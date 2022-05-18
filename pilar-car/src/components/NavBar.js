@@ -54,7 +54,7 @@ export default function NavBar (){
               </Button>
             ))}
           </Box>
-      
+     
         </Toolbar>
       </AppBar>
     </Box>
