@@ -23,7 +23,7 @@ export default function NavBar (){
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ mr: 1 }}
           >
             <MenuIcon />
           </IconButton>
@@ -34,7 +34,7 @@ export default function NavBar (){
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              fontFamily: 'Cursive',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
@@ -54,7 +54,7 @@ export default function NavBar (){
               </Button>
             ))}
           </Box>
-     
+          <IconButton color="inherit"><ShoppingCartIcon/> </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
