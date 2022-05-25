@@ -23,7 +23,10 @@ export default function ItemCount({stock,initial,onAdd}){
         }
 
         const handleRemoveButton=()=>{
-            setCounter(counter-1);
+            if (counter>0){
+                setCounter(counter-1);
+            }
+           
         }
 
     useEffect(()=>{
