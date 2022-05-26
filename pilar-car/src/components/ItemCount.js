@@ -10,15 +10,23 @@ export default function ItemCount({stock,initial,onAdd}){
         const [chartItems,setChartItems]=useState(0); 
 
          const handleAddChart=()=>{
-             setChartItems(chartItems+counter);
-             console.log("acntidad de items ",chartItems)
+            if((counter+chartItems)<=stock){
+                 
+                      setChartItems(chartItems+counter);
+                  
+            }
+           
+            
          }   
 
 
         const handleAddButton=()=>{
-            if(counter<stock){
+            
+            if((counter+chartItems)<stock){
                 setCounter(counter+1);
             }
+
+          
            
         }
 
@@ -41,6 +49,6 @@ export default function ItemCount({stock,initial,onAdd}){
             <div>
            <Button  variant="outlined" disabled={disable} onClick={()=>handleAddChart()} >Agregar al Carrito</Button>
             </div> 
-         
+        
     </div>)
 }
