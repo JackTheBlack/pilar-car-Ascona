@@ -8,4 +8,4 @@ Component "ItemListContainer" y Chart Icon con Material UI
 
 Component "ItemCounter" 26/05
 
-Components "Item" e "ItemList" con carga de Mock Promise de 2 segundos de retraso   30/05
+Components "Item" e "ItemList" con carga de Mock Promise de 2 segundos de retraso y Stock disponible   30/05
