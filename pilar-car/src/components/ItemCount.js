@@ -6,7 +6,8 @@ export default function ItemCount({stock,initial,onAdd}){
 
     const [counter,setCounter]=useState(initial);
     const[disable,setdisable]=useState(onAdd);
-
+   
+    
         const [chartItems,setChartItems]=useState(0); 
 
          const handleAddChart=()=>{
@@ -19,9 +20,9 @@ export default function ItemCount({stock,initial,onAdd}){
             
          }   
 
-
+                
         const handleAddButton=()=>{
-            
+
             if((counter+chartItems)<stock){
                 setCounter(counter+1);
             }
@@ -38,11 +39,12 @@ export default function ItemCount({stock,initial,onAdd}){
         }
 
     useEffect(()=>{
-        if(stock<1){
+        if((stock-chartItems)<1){
                setdisable(true);     
-    }},[disable,stock])
+    }},[disable,stock,chartItems])
 
     return(<div style={{border: "5px solid gray"}}>
+            <section>stock disponible:{stock-chartItems} </section>
            <div style={{backgroundColor:"white"}}>
            <Button onClick={()=>handleRemoveButton()}   style={{marginRight:"12%",marginLeft:"2px"}} variant="text">-</Button><span style={{textAlign:"center",marginRight:"12%"}}>{counter}</span><Button onClick={()=>handleAddButton()} style={{textAlign:"right"}}  variant="text">+</Button>
             </div> 
