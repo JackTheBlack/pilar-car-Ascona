@@ -18,13 +18,9 @@ function App() {
   const [loaded,setLoaded]=useState(false);
  const [items,setItems]=useState([]);
   const pedirDatos=()=>{
-return new Promise((resolve,reject)=>{
-
-    setTimeout(()=>{
-        resolve("resolver promesa")
-    },2000)
-
-})
+fetch('https://60f96cb0ee56ef0017975dce.mockapi.io/contracts')
+.then((resp)=>resp.json())
+.then((data)=>{console.log(data); setItems(data);  setLoaded(true)} )
 
   }
 
@@ -33,10 +29,9 @@ return new Promise((resolve,reject)=>{
 
   useEffect(() => {
    
-  pedirDatos().then((resp)=>{
-     setItems(array);
-    setLoaded(true);
-  })
+    pedirDatos();
+   
+  
 
 
 
