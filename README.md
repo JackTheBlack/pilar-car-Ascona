@@ -11,3 +11,5 @@ Component "ItemCounter" 26/05
 Components "Item" e "ItemList" con carga de Mock Promise de 2 segundos de retraso y Stock disponible   30/05
 
 Components "ItemDetails" e "ItemDetailsContainer" con carga de una mock api usando fectch   03/06 
+
+Primera entrega Trabajo final....  Rutas 07/06 
