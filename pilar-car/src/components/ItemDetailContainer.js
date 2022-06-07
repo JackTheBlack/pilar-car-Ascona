@@ -1,7 +1,11 @@
 import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
+
+export default function ItemDetailContainer(){
 
 
-export default function ItemDetailContainer({id}){
+    const params=useParams();
+    const id=params.id;
 
     return(
     <>

@@ -1,10 +1,11 @@
 
 import './App.css';
-import React,{useState,  useEffect} from "react";
+
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
-import zero from "./assets/LoadingZero.gif"
-import loadingBar from  "./assets/loadingBar.gif"
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import Category from "./components/Category";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
 
@@ -15,49 +16,29 @@ const array=[
   {name:"item3",img:"https://http2.mlstatic.com/D_NQ_NP_721828-MLA40451035918_012020-O.jpg",stock:0}]
 function App() {
 
-  const [loaded,setLoaded]=useState(false);
- const [items,setItems]=useState([]);
-  const pedirDatos=()=>{
-fetch('https://60f96cb0ee56ef0017975dce.mockapi.io/contracts')
-.then((resp)=>resp.json())
-.then((data)=>{console.log(data); setItems(data);  setLoaded(true)} )
-
-  }
-
-
-
-
-  useEffect(() => {
-   
-    pedirDatos();
-   
-  
-
-
-
-  },[]);
 
 
   return (
-  
+  <BrowserRouter>
   <div className="App">
     <NavBar/>
 
-   <h2 className="titulo" >ofertas de las semana</h2>
-   <div style={{marginTop:"10px", justifyContent:"center"}}>
-   
-   {!loaded?<div> <section> <img className='img' alt={"Zero Loading"}  src={zero} />  
-                  <img className='img2' alt={"Loading"} src={loadingBar} /></section> </div>:
-   <ItemListContainer greetings={items}/>} 
-   </div>
+    
+    <Routes>
+    <Route exact path="/" element={<ItemListContainer/>}/>
+    <Route exact path="/category/:categoryId" element={<ItemListContainer/>}/>
+    <Route exact path="/item/:id" element={<ItemDetailContainer/>}/>
 
+</Routes>  
 
+  
 
+  
  </div> 
     
    
     
-  
+ </BrowserRouter>
   );
 }
 

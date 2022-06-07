@@ -1,7 +1,7 @@
 
 import Item from "./Item"
-
-
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 export default function ItemList({items}){
 
 
@@ -9,10 +9,15 @@ export default function ItemList({items}){
 
 
     return(<>
-        <div style={{display:"flex", justifyContent:"center"}}>
-                {items.map((i)=>(<div key={i.name} style={{ paddingLeft:"10%"}}>
-                  <Item item={i}/>
+        
+       
+       <Box style={{flexGrow:1}}>
+        <Grid container spacing={4}>
+                {items.map((i)=>(<div key={i.name} style={{mappingTop:"10px",mappingBottom:"10px" , paddingLeft:"10%"}}>
+                 <Grid item   xs={12} > <Item  item={i}/> </Grid>
                   </div> ))}
-            </div>
+                  </Grid>    
+            </Box>
+           
     </>)
 }

@@ -7,6 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
+import {Link} from "react-router-dom"
+
 
 export default function NavBar (){
     const pages = ['Carroceria', 'Motor', 'Accesorios'];
@@ -45,6 +47,7 @@ export default function NavBar (){
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
+             <Link to={`/category/${page}`}>
               <Button
                 key={page}
                 onClick={()=>console.log(page, "clciked")}
@@ -52,6 +55,7 @@ export default function NavBar (){
               >
                 {page}
               </Button>
+              </Link>
             ))}
           </Box>
           <IconButton color="inherit"><ShoppingCartIcon/> </IconButton>

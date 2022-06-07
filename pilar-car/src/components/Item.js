@@ -5,6 +5,9 @@ import {useState} from "react";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ItemDetailContainer from './ItemDetailContainer'; 
+import {Link} from "react-router-dom"
+
+
 
 export default function Item({item}){
 
@@ -29,10 +32,17 @@ const style = {
     p: 4,
   };
     const handleClose = () => setOpen(false);
+
+
+    
     return(<>
                  <div> <img alt={item.name} style={{height:"100px", width:"120px"}} src={item.img} /></div>
                       <div style={{textAlign:"center"}}> { item.nombre }</div>
-                      <div style={{textAlign:"center"}}><Button variant="contained" onClick={()=>handleDetailsButton()}  >Details</Button>  </div>
+                      <div style={{textAlign:"center"}}>
+                        <Link to={`/item/${item.id}`}> 
+                        <Button variant="contained" onClick={()=>console.log("hola mundo")}  >Details</Button>  
+                        </Link>
+                        </div>
                       <div><ItemCount stock={item.stock} initial={0}  id={item.id} onAdd={false} /></div>
 
                 <div>
