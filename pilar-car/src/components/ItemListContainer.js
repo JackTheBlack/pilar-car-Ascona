@@ -15,7 +15,7 @@ export default function ItemListContainer(){
      const pedirDatos=()=>{
    fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts`)
    .then((resp)=>resp.json())
-   .then((data)=>{console.log(data); setItems(data);  setLoaded(true)} )
+   .then((data)=>{console.log(data); console.log("estoy aqui"); setItems(data);  setLoaded(true)} )
    .catch((error)=>{console.log("error")})
    
      }
@@ -24,7 +24,7 @@ export default function ItemListContainer(){
      const pedirDatosCategoria=()=>{
         fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts?categoria=${categoryId}`)
         .then((resp)=>resp.json())
-        .then((data)=>{console.log(data); setItems(data);  setLoaded(true)} )
+        .then((data)=>{console.log(data); setItems(data);    setLoaded(true)} )
         
           }
    
@@ -35,9 +35,11 @@ export default function ItemListContainer(){
       if(categoryId===undefined){
             console.log("fdfdfdfdf")
             pedirDatos();
+        
+         
       }else{
           pedirDatosCategoria();
-          console.log(categoryId)
+       
       }
     
       

@@ -1,6 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import loadingBar from "../assets/loadingBar.gif"
+import Button from '@mui/material/Button';
+import {Link} from "react-router-dom"
 import '../App.css';
+import ItemCount from "./ItemCount";
+
 
 
 
@@ -8,7 +12,7 @@ export default function ItemDetail({id}){
 
   const[loaded,setLoaded]=React.useState(false);
   const [producto,setProducto]=React.useState();
- 
+  const [counter,setCounter]=useState(1);
 
     const getItemDetails=()=>{
         console.log(id)
@@ -21,26 +25,34 @@ export default function ItemDetail({id}){
 
     React.useEffect(() => {
    
+      
         getItemDetails();
        
       
     
     
     
-      });
+      },[loaded]);
 
       return(
           <>
+           
           {!loaded?<>    <img className='img2' alt={"Loading"} src={loadingBar} /> </>:
-          <div>
-          <p>Producto: {producto.nombre} </p>
-          <img alt="producto" style={{height:"100px", width:"120px"}} src={producto.img} />      
-          <p>categoria: {producto.categoria} </p>   
+          <div  style={{justifyContent:"center",textAlign:"center", alignItems:"center"}} >
+         <div > Producto: {producto.nombre} </div><br></br>
+         <div>
+         <img alt="producto" style={{height:"100px", width:"120px"}} src={producto.img} />   
+           </div>   
+          <p>categoria: {producto.categoria}    </p>
           <p>precio: {producto.precio} </p>   
           <p>stock: {producto.stock} </p>
-          <p>marca: {producto.marca} </p>      
+          <p>marca: {producto.marca} </p>   
+          <ItemCount stock={producto.stock} onAdd={false} counter={counter} setCounter={setCounter} />   
+          <Link to={`/cart`}>
+          <Button  variant="outlined"  onClick={()=>console.log("terminar compra")} >Terminar compra</Button>
+          </Link>
           </div> }
-          
+
           </>
       );
 }

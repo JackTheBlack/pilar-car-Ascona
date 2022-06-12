@@ -43,7 +43,7 @@ const style = {
                         <Button variant="contained" onClick={()=>console.log("hola mundo")}  >Details</Button>  
                         </Link>
                         </div>
-                      <div><ItemCount stock={item.stock} initial={0}  id={item.id} onAdd={false} /></div>
+                  {/* <div><ItemCount stock={item.stock} initial={0}  id={item.id} onAdd={false} /></div>*/}
 
                 <div>
                 <Modal
