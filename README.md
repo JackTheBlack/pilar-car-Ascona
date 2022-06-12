@@ -13,3 +13,5 @@ Components "Item" e "ItemList" con carga de Mock Promise de 2 segundos de retras
 Components "ItemDetails" e "ItemDetailsContainer" con carga de una mock api usando fectch   03/06 
 
 Primera entrega Trabajo final....  Rutas 07/06 
+
+Compopnent "Cart" y sincronizacion del Component "ItemDetail" e "ItemCount"  12/06
