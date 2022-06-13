@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import {Link} from "react-router-dom"
 import '../App.css';
 import ItemCount from "./ItemCount";
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
@@ -12,7 +12,10 @@ export default function ItemDetail({id}){
 
   const[loaded,setLoaded]=React.useState(false);
   const [producto,setProducto]=React.useState();
-  const [counter,setCounter]=useState(1);
+  const [counter,setCounter]=useState(0);
+  const [cartDisable,setCartDisable]=useState(true);
+  const [terminarCompraDisable,setTerminarCompraDisable]=useState(true);
+
 
     const getItemDetails=()=>{
         console.log(id)
@@ -23,16 +26,27 @@ export default function ItemDetail({id}){
     }
 
 
+    const handleAddCart=()=>{
+      setCounter(0);
+      setCartDisable(true)
+      setTerminarCompraDisable(false);
+      
+    }
+
+
     React.useEffect(() => {
    
       
         getItemDetails();
        
       
+
+        if (counter===0){
+          setCartDisable(true)
+        }
     
     
-    
-      },[loaded]);
+      },[loaded,counter]);
 
       return(
           <>
@@ -47,10 +61,15 @@ export default function ItemDetail({id}){
           <p>precio: {producto.precio} </p>   
           <p>stock: {producto.stock} </p>
           <p>marca: {producto.marca} </p>   
-          <ItemCount stock={producto.stock} onAdd={false} counter={counter} setCounter={setCounter} />   
+          <ItemCount cartDisable={cartDisable} setCartDisable={setCartDisable} stock={producto.stock} onAdd={false} counter={counter} setCounter={setCounter} />   
+         {cartDisable? <></>:  <Button  variant="contained" onClick={()=>handleAddCart()}>Adehrir al carrito<ShoppingCartIcon/> </Button>}
+        
+          <br></br>
+          <br></br>
+          {terminarCompraDisable? <></>:
           <Link to={`/cart`}>
           <Button  variant="outlined"  onClick={()=>console.log("terminar compra")} >Terminar compra</Button>
-          </Link>
+          </Link>}
           </div> }
 
           </>

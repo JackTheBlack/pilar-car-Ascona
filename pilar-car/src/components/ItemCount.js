@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 
 
 
-export default function ItemCount({stock,onAdd,id,counter,setCounter}){
+export default function ItemCount({cartDisable, setCartDisable,stock,onAdd,id,counter,setCounter}){
 
     
                 
@@ -10,6 +10,7 @@ export default function ItemCount({stock,onAdd,id,counter,setCounter}){
 
             if((counter)<stock){
                 setCounter(counter+1);
+                setCartDisable(false);
             }
 
           

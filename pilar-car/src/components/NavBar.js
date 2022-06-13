@@ -32,7 +32,6 @@ export default function NavBar (){
           <Typography
             variant="h6"
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -43,7 +42,9 @@ export default function NavBar (){
               textDecoration: 'none',
             }}
           >
+                  <Link to={`/`}>
         Pilar Car
+        </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
