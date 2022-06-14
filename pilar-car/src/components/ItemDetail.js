@@ -61,8 +61,10 @@ export default function ItemDetail({id}){
           <p>precio: {producto.precio} </p>   
           <p>stock: {producto.stock} </p>
           <p>marca: {producto.marca} </p>   
+          {terminarCompraDisable? 
           <ItemCount cartDisable={cartDisable} setCartDisable={setCartDisable} stock={producto.stock} onAdd={false} counter={counter} setCounter={setCounter} />   
-         {cartDisable? <></>:  <Button  variant="contained" onClick={()=>handleAddCart()}>Adehrir al carrito<ShoppingCartIcon/> </Button>}
+         :<></>}
+          {cartDisable? <></>:  <Button  variant="contained" onClick={()=>handleAddCart()}>Adehrir al carrito<ShoppingCartIcon/> </Button>}
         
           <br></br>
           <br></br>
