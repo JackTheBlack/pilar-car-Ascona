@@ -57,7 +57,7 @@ export default function Cart(){
             <StyledTableCell>Nombre</StyledTableCell>
             <StyledTableCell align="right">cantidad</StyledTableCell>
             <StyledTableCell align="right">precio</StyledTableCell>
-            <StyledTableCell align="right">subtptal</StyledTableCell>
+            <StyledTableCell align="right">subtotal</StyledTableCell>
             <StyledTableCell align="right"> </StyledTableCell>
           </TableRow>
         </TableHead>
