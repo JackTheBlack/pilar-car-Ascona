@@ -1,6 +1,6 @@
 import React,{useContext} from "react";
 import { styled } from '@mui/material/styles';
-
+import { useNavigate } from "react-router-dom";
 import CartContext from "../context/CartContext";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,12 +9,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 
 
 export default function Cart(){
-
-
+   
+    const {precioTotal,setPrecioTotal,cart,setTotal,total,setCart}=useContext(CartContext)
+    const navigate=useNavigate();
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: theme.palette.common.black,
@@ -35,8 +37,11 @@ export default function Cart(){
         },
       }));
       
+ 
       const handleEliminar=(index)=>{
-
+        let t=precioTotal-cart[index].subtotal
+        setPrecioTotal(t)
+        setTotal(total-cart[index].cantidad) 
         let aux=cart;
         aux.splice(index,1);
         setCart([...aux])
@@ -44,12 +49,17 @@ export default function Cart(){
 
       }
 
-    const {cart,setCart}=useContext(CartContext)
-    console.log(cart)
     return(<>
     <h1>Cart component</h1>
-      
 
+        {cart.length<1? 
+        <>
+        <h2>El carrito esta vacio</h2>
+         <Button variant="text" onClick={()=>navigate("/")} >Return to landing</Button>  
+        
+        </>:
+
+            <>
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -76,7 +86,9 @@ export default function Cart(){
         </TableBody>
       </Table>
     </TableContainer>
-
+    <h3>TOTAL:{precioTotal} </h3>
+   </>
+  }
 
 
     </>)

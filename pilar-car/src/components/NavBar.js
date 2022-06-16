@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,13 +7,21 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
-import {Link} from "react-router-dom"
+import {Link,useNavigate} from "react-router-dom"
+import CartContext from "../context/CartContext";
+
+
 
 
 export default function NavBar (){
     const pages = ['Carroceria', 'Motor', 'Accesorios'];
 
+    const {cart,total}=useContext(CartContext);
 
+    
+
+
+    let navigate=useNavigate();
 
     return(
       <header>
@@ -59,7 +67,10 @@ export default function NavBar (){
               </Link>
             ))}
           </Box>
-          <IconButton color="inherit"><ShoppingCartIcon/> </IconButton>
+
+        {cart.length<1?<></>:<IconButton onClick={()=>navigate('/cart')} color="inherit">  <ShoppingCartIcon/>{total} </IconButton>}
+          
+        
         </Toolbar>
       </AppBar>
     </Box>

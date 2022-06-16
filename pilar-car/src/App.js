@@ -17,6 +17,8 @@ import CartContext from "./context/CartContext"
 */
   function App() {
 
+    const [precioTotal,setPrecioTotal]=useState(0)    
+    const [total,setTotal]=useState(0)
 
     const[cart,setCart]=useState([])
     
@@ -45,14 +47,15 @@ import CartContext from "./context/CartContext"
           subtotal:item.precio*newQ }
 
         setCart([...aux])
+
       }
-    
-     
+     setPrecioTotal(precioTotal+(q*item.precio)) 
+     setTotal(total+q)
     
     }
 
   return (
-   <CartContext.Provider value={{cart,addItem,setCart}}>
+   <CartContext.Provider value={{precioTotal,setPrecioTotal,total,setTotal,cart,addItem,setCart}}>
  
 
 

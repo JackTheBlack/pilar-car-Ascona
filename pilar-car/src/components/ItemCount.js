@@ -29,8 +29,7 @@ export default function ItemCount({cartDisable, setCartDisable,stock,onAdd,id,co
 
 
     return(<div style={{justifyContent:"center",textAlign:"center"}}>
-            <section>stock disponible:{stock} </section>
-           <div style={{backgroundColor:"white"}}>
+            <div style={{backgroundColor:"white"}}>
            <Button onClick={()=>handleRemoveButton()}   style={{marginRight:"12%",marginLeft:"2px"}} variant="text">-</Button><span style={{textAlign:"center",marginRight:"12%"}}>{counter}</span><Button onClick={()=>handleAddButton()} style={{textAlign:"right"}}  variant="text">+</Button>
             </div> 
          

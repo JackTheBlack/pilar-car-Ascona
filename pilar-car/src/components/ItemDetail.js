@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import {Link} from "react-router-dom"
 import '../App.css';
 import ItemCount from "./ItemCount";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CartContext  from "../context/CartContext";
 
 
@@ -18,12 +18,12 @@ export default function ItemDetail({id}){
   const [cartDisable,setCartDisable]=useState(true);
   const [terminarCompraDisable,setTerminarCompraDisable]=useState(true);
   
-  const {cart,addItem}=useContext(CartContext)
+  const {addItem}=useContext(CartContext)
 
     const getItemDetails=()=>{
         fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts/${id}` )
         .then((resp)=>resp.json())
-        .then((data)=>{console.log(data);setProducto(data);setLoaded(true) } )
+        .then((data)=>{setProducto(data);setLoaded(true) } )
 
     }
 
@@ -66,7 +66,7 @@ export default function ItemDetail({id}){
           {terminarCompraDisable? 
           <ItemCount cartDisable={cartDisable} setCartDisable={setCartDisable} stock={producto.stock} onAdd={false} counter={counter} setCounter={setCounter} />   
          :<></>}
-          {cartDisable? <></>:  <Button  variant="contained" onClick={()=>handleAddCart()}>Adehrir al carrito<ShoppingCartIcon/> </Button>}
+          {cartDisable? <></>:  <Button  variant="contained" onClick={()=>handleAddCart()}>Adehrir al carrito<AddShoppingCartIcon/> </Button>}
         
           <br></br>
           <br></br>
