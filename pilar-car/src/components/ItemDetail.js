@@ -1,24 +1,26 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import loadingBar from "../assets/loadingBar.gif"
 import Button from '@mui/material/Button';
 import {Link} from "react-router-dom"
 import '../App.css';
 import ItemCount from "./ItemCount";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CartContext  from "../context/CartContext";
 
 
 
 export default function ItemDetail({id}){
+
 
   const[loaded,setLoaded]=React.useState(false);
   const [producto,setProducto]=React.useState();
   const [counter,setCounter]=useState(0);
   const [cartDisable,setCartDisable]=useState(true);
   const [terminarCompraDisable,setTerminarCompraDisable]=useState(true);
-
+  
+  const {cart,addItem}=useContext(CartContext)
 
     const getItemDetails=()=>{
-        console.log(id)
         fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts/${id}` )
         .then((resp)=>resp.json())
         .then((data)=>{console.log(data);setProducto(data);setLoaded(true) } )
@@ -30,8 +32,8 @@ export default function ItemDetail({id}){
       setCounter(0);
       setCartDisable(true)
       setTerminarCompraDisable(false);
-      
-    }
+       addItem(producto,counter);
+        }
 
 
     React.useEffect(() => {
@@ -69,7 +71,7 @@ export default function ItemDetail({id}){
           <br></br>
           <br></br>
           {terminarCompraDisable? <></>:
-          <Link to={`/cart`}>
+          <Link style={{ textDecoration: 'none' }} to={`/cart`}>
           <Button  variant="outlined"  onClick={()=>console.log("terminar compra")} >Terminar compra</Button>
           </Link>}
           </div> }

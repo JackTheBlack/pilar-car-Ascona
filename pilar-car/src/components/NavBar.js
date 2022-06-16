@@ -42,13 +42,13 @@ export default function NavBar (){
               textDecoration: 'none',
             }}
           >
-                  <Link to={`/`}>
+        <Link style={{ textDecoration: 'none' }} to={`/`}>
         Pilar Car
         </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-             <Link to={`/category/${page}`}>
+             <Link style={{ textDecoration: 'none' }} to={`/category/${page}`}>
               <Button
                 key={page}
                 onClick={()=>console.log(page, "clciked")}

@@ -39,7 +39,7 @@ const style = {
                  <div> <img alt={item.name} style={{height:"100px", width:"120px"}} src={item.img} /></div>
                       <div style={{textAlign:"center"}}> { item.nombre }</div>
                       <div style={{textAlign:"center"}}>
-                        <Link to={`/item/${item.id}`}> 
+                        <Link to={`/item/${item.id}`} style={{ textDecoration: 'none' }}> 
                         <Button variant="contained" onClick={()=>console.log("hola mundo")}  >Details</Button>  
                         </Link>
                         </div>

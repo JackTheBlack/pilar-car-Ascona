@@ -1,12 +1,12 @@
 
 import './App.css';
-
+import React, {useState} from "react"
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Cart from "./components/Cart"
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {CartContext} from "./context/context"
+import CartContext from "./context/CartContext"
 
 
 
@@ -18,11 +18,42 @@ import {CartContext} from "./context/context"
   function App() {
 
 
-    const value="hola";
+    const[cart,setCart]=useState([])
+    
+    const addItem=(item,q)=>{
+
+
+     
+      const newItem={nombre:item.nombre,
+                     cantidad:q,
+                     precio:item.precio,
+                     subtotal:item.precio*q
+      }
+
+      const index=cart.findIndex(i=>i.nombre===item.nombre)
+      console.log(index)
+      if (index===-1){
+
+        setCart([...cart,newItem])
+      }else{
+        let aux=cart;
+        const newQ=q+aux[index].cantidad
+       
+        aux[index]={nombre:item.nombre,
+          cantidad:newQ,
+          precio:item.precio,
+          subtotal:item.precio*newQ }
+
+        setCart([...aux])
+      }
+    
+     
+    
+    }
 
   return (
-    <CartContext.Provider values={value}>
-
+   <CartContext.Provider value={{cart,addItem,setCart}}>
+ 
 
 
   
