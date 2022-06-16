@@ -15,3 +15,7 @@ Components "ItemDetails" e "ItemDetailsContainer" con carga de una mock api usan
 Primera entrega Trabajo final....  Rutas 07/06 
 
 Compopnent "Cart" y sincronizacion del Component "ItemDetail" e "ItemCount"  12/06
+
+Context "CartContext" Logica de no copiado de items  16/06
+
+CartContex view: Renderizado opcional de CartWidget, PrecioTotal, Cantidad de Items  17/06 
