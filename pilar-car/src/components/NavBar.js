@@ -14,7 +14,7 @@ import CartContext from "../context/CartContext";
 
 
 export default function NavBar (){
-    const pages = ['Carroceria', 'Motor', 'Accesorios'];
+    const pages = ['carroceria', 'motor', 'accesorios'];
 
     const {cart,total}=useContext(CartContext);
 

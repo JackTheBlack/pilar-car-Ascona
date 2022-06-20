@@ -4,6 +4,9 @@ import loadingBar from  "../assets/loadingBar.gif"
 import '../App.css';
 import {useState, useEffect} from "react"
 import { useParams } from "react-router-dom";
+import { query,where,getFiresore,collection,getDocs,getDoc } from "firebase/firestore";
+import { db} from "../firebase/config" 
+
 
 
 export default function ItemListContainer(){
@@ -12,7 +15,12 @@ export default function ItemListContainer(){
     const categoryId=params.categoryId;
     const [loaded,setLoaded]=useState(false);
     const [items,setItems]=useState([]);
-     const pedirDatos=()=>{
+
+
+
+
+
+    /** const pedirDatos=()=>{
    fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts`)
    .then((resp)=>resp.json())
    .then((data)=>{  setItems(data);  setLoaded(true)} )
@@ -21,7 +29,7 @@ export default function ItemListContainer(){
      }
 
 
-     const pedirDatosCategoria=()=>{
+    const pedirDatosCategoria=()=>{
         fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts?categoria=${categoryId}`)
         .then((resp)=>resp.json())
         .then((data)=>{ setItems(data);    setLoaded(true)} )
@@ -31,7 +39,7 @@ export default function ItemListContainer(){
    
    
    
-     useEffect(() => {
+      useEffect(() => {
       if(categoryId===undefined){
             console.log("fdfdfdfdf")
             pedirDatos();
@@ -47,8 +55,41 @@ export default function ItemListContainer(){
    
    
    
-     },[categoryId]);
+     },[categoryId]);*/
    
+
+
+     useEffect(()=>{
+    
+      if(categoryId===undefined){
+        const productosRef=collection(db,"productos")
+    
+          getDocs(productosRef).then((res)=>{const products=res.docs.map((data)=>{
+              return{
+                  id:data.id,
+                 ...data.data()
+              }
+          })
+              console.log(products)
+              setItems(products)
+              setLoaded(true)
+      })
+
+    }else{
+        const q=query(collection(db,"productos"),where("categoria","==",categoryId))
+       getDocs(q).then((snapshot)=>{
+            if(snapshot.size===0){
+                console.log("no results")
+            }else{
+                setItems(snapshot.docs.map((doc)=>({id:doc.id,...doc.data()})))
+                console.log(items)
+            }
+            setLoaded(true);
+
+       })
+    }
+
+  },[categoryId])
 
 
   

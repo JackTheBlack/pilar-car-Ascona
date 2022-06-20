@@ -6,6 +6,9 @@ import '../App.css';
 import ItemCount from "./ItemCount";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CartContext  from "../context/CartContext";
+import { doc,getDoc } from "firebase/firestore";
+import { db} from "../firebase/config" 
+
 
 
 
@@ -17,8 +20,9 @@ export default function ItemDetail({id}){
   const [counter,setCounter]=useState(0);
   const [cartDisable,setCartDisable]=useState(true);
   const [terminarCompraDisable,setTerminarCompraDisable]=useState(true);
-  
   const {addItem}=useContext(CartContext)
+  const [item,setItem]=useState();
+
 
     const getItemDetails=()=>{
         fetch(`https://60f96cb0ee56ef0017975dce.mockapi.io/contracts/${id}` )
@@ -36,7 +40,7 @@ export default function ItemDetail({id}){
         }
 
 
-    React.useEffect(() => {
+  /*  React.useEffect(() => {
    
       
         getItemDetails();
@@ -48,8 +52,34 @@ export default function ItemDetail({id}){
         }
     
     
-      },[loaded,counter]);
+      },[loaded,counter]);*/
 
+     
+
+      React.  useEffect(()=>{
+        const productosRef=doc(db,"productos",id)
+  
+  
+            getDoc(productosRef).then((doc)=>{
+              
+              
+              setProducto({ id:doc.id,
+              ...doc.data()})
+
+
+              console.log({ id:doc.id,
+                ...doc.data()})     
+                
+            }).finally(()=>{setLoaded(true)})
+               
+        },[])
+  
+  
+  
+    
+  
+     
+     
       return(
           <>
            
