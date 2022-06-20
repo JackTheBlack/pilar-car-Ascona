@@ -19,3 +19,5 @@ Compopnent "Cart" y sincronizacion del Component "ItemDetail" e "ItemCount"  12/
 Context "CartContext" Logica de no copiado de items  16/06
 
 CartContex view: Renderizado opcional de CartWidget, PrecioTotal, Cantidad de Items  17/06 
+
+Implematacion de FireBase en el "ItemListContainer" Component 19/06
