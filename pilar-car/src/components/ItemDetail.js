@@ -20,7 +20,7 @@ export default function ItemDetail({id}){
   const [counter,setCounter]=useState(0);
   const [cartDisable,setCartDisable]=useState(true);
   const [terminarCompraDisable,setTerminarCompraDisable]=useState(true);
-  const {addItem}=useContext(CartContext)
+  const {addItem,cart}=useContext(CartContext)
   const [item,setItem]=useState();
 
 
@@ -37,7 +37,8 @@ export default function ItemDetail({id}){
       setCartDisable(true)
       setTerminarCompraDisable(false);
        addItem(producto,counter);
-        }
+     
+      }
 
 
   /*  React.useEffect(() => {

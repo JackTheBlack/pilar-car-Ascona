@@ -11,10 +11,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
-
-
 export default function Cart(){
    
+
     const {precioTotal,setPrecioTotal,cart,setTotal,total,setCart}=useContext(CartContext)
     const navigate=useNavigate();
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -60,6 +59,7 @@ export default function Cart(){
         </>:
 
             <>
+        
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -87,6 +87,9 @@ export default function Cart(){
       </Table>
     </TableContainer>
     <h3>TOTAL:{precioTotal} </h3>
+    <Button variant="contained" onClick={()=>navigate("/datosEnvio")}>
+      Proseguir Compra
+    </Button>
    </>
   }
 

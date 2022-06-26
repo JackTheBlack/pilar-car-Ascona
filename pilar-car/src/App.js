@@ -7,7 +7,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import Cart from "./components/Cart"
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import CartContext from "./context/CartContext"
-
+import DatosEnvio from './components/datosEnvio';
 
 
 /*const array=[
@@ -35,8 +35,11 @@ import CartContext from "./context/CartContext"
       const index=cart.findIndex(i=>i.nombre===item.nombre)
       console.log(index)
       if (index===-1){
-
+        let aux1=([...cart,newItem])
+      //  console.log("this is cart",aux1)
         setCart([...cart,newItem])
+        localStorage.setItem("cart",JSON.stringify(aux1),5000)
+      //  console.log(aux1)
       }else{
         let aux=cart;
         const newQ=q+aux[index].cantidad
@@ -45,11 +48,13 @@ import CartContext from "./context/CartContext"
           cantidad:newQ,
           precio:item.precio,
           subtotal:item.precio*newQ }
-
+          localStorage.setItem("cart",JSON.stringify(aux),5000)
         setCart([...aux])
 
       }
+      localStorage.setItem("precioTotal",JSON.stringify(precioTotal+(q*item.precio)))
      setPrecioTotal(precioTotal+(q*item.precio)) 
+     localStorage.setItem("totalDeItems",JSON.stringify(total+q))
      setTotal(total+q)
     
     }
@@ -70,6 +75,7 @@ import CartContext from "./context/CartContext"
     <Route exact path="/category/:categoryId" element={<ItemListContainer/>}/>
     <Route exact path="/item/:id" element={<ItemDetailContainer/>}/>
     <Route exact path="/cart" element={<Cart/>}/>
+    <Route exact path="/datosEnvio" element={<DatosEnvio/>}/>
 </Routes>  
 
   
