@@ -19,7 +19,7 @@ import DatosEnvio from './components/datosEnvio';
 
     const [precioTotal,setPrecioTotal]=useState(0)    
     const [total,setTotal]=useState(0)
-
+    const [orderId,setOrderId]=useState(null);
     const[cart,setCart]=useState([])
     
     const addItem=(item,q)=>{
@@ -27,6 +27,7 @@ import DatosEnvio from './components/datosEnvio';
 
      
       const newItem={nombre:item.nombre,
+                      id:item.id,
                      cantidad:q,
                      precio:item.precio,
                      subtotal:item.precio*q
@@ -60,7 +61,7 @@ import DatosEnvio from './components/datosEnvio';
     }
 
   return (
-   <CartContext.Provider value={{precioTotal,setPrecioTotal,total,setTotal,cart,addItem,setCart}}>
+   <CartContext.Provider value={{orderId,setOrderId,precioTotal,setPrecioTotal,total,setTotal,cart,addItem,setCart}}>
  
 
 

@@ -10,6 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 export default function Cart(){
    
@@ -25,6 +27,9 @@ export default function Cart(){
           fontSize: 14,
         },
       }));
+
+
+
       
       const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
@@ -37,6 +42,14 @@ export default function Cart(){
       }));
       
  
+      const handleVaciarCarrito=()=>{
+
+        setCart()
+        localStorage.clear()
+        navigate("/")
+      }
+
+
       const handleEliminar=(index)=>{
         let t=precioTotal-cart[index].subtotal
         setPrecioTotal(t)
@@ -44,6 +57,7 @@ export default function Cart(){
         let aux=cart;
         aux.splice(index,1);
         setCart([...aux])
+        localStorage.setItem("cart",JSON.stringify(cart))
 
 
       }
@@ -68,7 +82,7 @@ export default function Cart(){
             <StyledTableCell align="right">cantidad</StyledTableCell>
             <StyledTableCell align="right">precio</StyledTableCell>
             <StyledTableCell align="right">subtotal</StyledTableCell>
-            <StyledTableCell align="right"> </StyledTableCell>
+            <StyledTableCell align="right">eliminar </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -80,7 +94,7 @@ export default function Cart(){
               <StyledTableCell align="right">{row.cantidad}</StyledTableCell>
               <StyledTableCell align="right">{row.precio}</StyledTableCell>
               <StyledTableCell align="right">{row.subtotal}</StyledTableCell>
-              <StyledTableCell align="right"><button onClick={()=>handleEliminar(index)}>eliminar</button></StyledTableCell>
+              <StyledTableCell align="right"><Button variant="contained" color="error" onClick={()=>handleEliminar(index)}><DeleteIcon/></Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -90,6 +104,7 @@ export default function Cart(){
     <Button variant="contained" onClick={()=>navigate("/datosEnvio")}>
       Proseguir Compra
     </Button>
+    <Button varaint="contained" color="error" onClick={()=>handleVaciarCarrito}> Vaciar Carrito</Button>
    </>
   }
 
