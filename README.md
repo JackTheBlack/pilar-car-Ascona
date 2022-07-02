@@ -21,3 +21,7 @@ Context "CartContext" Logica de no copiado de items  16/06
 CartContex view: Renderizado opcional de CartWidget, PrecioTotal, Cantidad de Items  17/06 
 
 Implematacion de FireBase en el "ItemListContainer" Component 19/06
+
+Implementacion, Update Stock, control Stock, cargado Order a firebase. Muestra Id de pedido luego de realizar el mismo  
+
+Usuario y contrasña reconocidos: User : Nicolas@nicolas.com  , PassWord:123456
