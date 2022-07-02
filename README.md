@@ -24,4 +24,7 @@ Implematacion de FireBase en el "ItemListContainer" Component 19/06
 
 Implementacion, Update Stock, control Stock, cargado Order a firebase. Muestra Id de pedido luego de realizar el mismo  
 
+*muestra el id luego de generar la orden
+* ahora si carga bien el nombre del cliente
+
 Usuario y contrasña reconocidos: User : Nicolas@nicolas.com  , PassWord:123456
