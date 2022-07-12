@@ -28,3 +28,16 @@ Implementacion, Update Stock, control Stock, cargado Order a firebase. Muestra I
 * ahora si carga bien el nombre del cliente
 
 Usuario y contrasña reconocidos: User : Nicolas@nicolas.com  , PassWord:123456
+
+Wishlist component : cundo el usuario se loguea, al costado de los productos aparecen estrellas, que al clickear sobre ellas agregara dicho producto a la wishlist del usuario.
+En caso de que vuelva a presionar, dicho producto sera retirado de la wishlist
+
+LIBREIAS EXTRAS:
+
+react-router-dom : Libreria Utilizada para la navegacion
+
+@mui/icons-material,@mui/material,@emotion/styled,@emotion/react : Conjuntos de librerias utilizadas para dar estilo a la app con Material UI
+
+firebase: Libreria utilizada para conectarce con Firebase de GOOGLE
+
+
