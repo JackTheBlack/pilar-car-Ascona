@@ -10,9 +10,9 @@ import Button from '@mui/material/Button';
 import {Link,useNavigate} from "react-router-dom"
 import CartContext from "../context/CartContext";
 import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
 import LogForm from "./LogForm";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 
 export default function NavBar (){
@@ -22,14 +22,16 @@ export default function NavBar (){
   const [loginButton,setLoginButotn]=useState(true)
     const pages = ['carroceria', 'motor', 'accesorios'];
     const [open,setOpen]=useState(false);
-    const {cart,setCart,total,setTotal}=useContext(CartContext);
+    const {setStar,total,setTotal,cart,setCart,session}=useContext(CartContext);
+
     const handleClose=()=>{
         setOpen(false)
     }
    
     const handleLogOut=()=>{
           sessionStorage.removeItem("session")
-          setCart([]);
+          setStar(false);
+         localStorage.removeItem("cart")
           setAuth(null);
           setTotal(0);
           navigate("/")
@@ -45,7 +47,9 @@ export default function NavBar (){
       }else{
         setLoginButotn(true)
       }
-    },[auth])
+   console.log(session)
+
+    },[])
 
   
 
@@ -82,7 +86,7 @@ export default function NavBar (){
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-             <Link style={{ textDecoration: 'none' }} to={`/category/${page}`}>
+             <Link key={page} style={{ textDecoration: 'none' }} to={`/category/${page}`}>
               <Button
                 key={page}
                 onClick={()=>console.log(page, "clciked")}
@@ -97,7 +101,17 @@ export default function NavBar (){
           {auth!==null?      
                 
                 <>
-                    {console.log("aca estamos",auth)}
+                    <Typography
+       sx={{
+         mr: 2,
+          fontWeight: 700,
+         letterSpacing: '.3rem',
+         color: 'inherit',
+         textDecoration: 'none',
+       }}
+     >  {auth[0].nombre} </Typography>
+                         <IconButton alt="favoritos" onClick={()=>navigate(`/wishlist`)} ><StarBorderIcon/> </IconButton>   
+
                     <IconButton><AccountCircleRoundedIcon/> </IconButton>  <Button   sx={{color: 'white'}} variant="text"  onClick={()=>handleLogOut()} > Log out</Button>   
                      </>
       :   <Typography
@@ -116,7 +130,7 @@ export default function NavBar (){
      </Typography>
 }
 
-        {cart.length<1?<></>:<IconButton onClick={()=>navigate('/cart')} color="inherit">  <ShoppingCartIcon/>{total} </IconButton>}
+        {total<1?<></>:<IconButton onClick={()=>navigate('/cart')} color="inherit">  <ShoppingCartIcon/>{total} </IconButton>}
           
         
         </Toolbar>

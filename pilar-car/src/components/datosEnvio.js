@@ -9,7 +9,6 @@ import CartContext from "../context/CartContext";
 import {getFirestore,getDoc,collection,addDoc,getDocs,query,documentId,where,writeBatch} from "firebase/firestore"
 import { useNavigate } from 'react-router-dom';
 
-
 export default function DatosEnvio()
 {
     const navigate=useNavigate()

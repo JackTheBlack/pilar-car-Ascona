@@ -6,7 +6,8 @@ import '../App.css';
 import ItemCount from "./ItemCount";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CartContext  from "../context/CartContext";
-import { doc,getDoc } from "firebase/firestore";
+
+import {addDoc,collection,getFirestore, doc,getDoc } from "firebase/firestore";
 import { db} from "../firebase/config" 
 
 

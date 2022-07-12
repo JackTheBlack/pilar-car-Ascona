@@ -1,4 +1,4 @@
-import React,{useContext} from "react";
+import React,{useContext,useState} from "react";
 import { styled } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import CartContext from "../context/CartContext";
@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export default function Cart(){
    
 
-    const {precioTotal,setPrecioTotal,cart,setTotal,total,setCart}=useContext(CartContext)
+    const {precioTotal,cart,setCart,setTotal,setPrecioTotal,total}=useContext(CartContext)
     const navigate=useNavigate();
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -28,6 +28,7 @@ export default function Cart(){
         },
       }));
 
+    
 
 
       
@@ -44,16 +45,23 @@ export default function Cart(){
  
       const handleVaciarCarrito=()=>{
 
-        setCart()
         localStorage.clear()
+        setCart([])
+        setTotal(0)
+        setPrecioTotal(0)
+       
         navigate("/")
+        console.log("vaciar carrito")
       }
 
 
       const handleEliminar=(index)=>{
         let t=precioTotal-cart[index].subtotal
+        localStorage.setItem("totalDeItems",total-cart[index].cantidad)
+        localStorage.setItem("precioTotal",t)
         setPrecioTotal(t)
         setTotal(total-cart[index].cantidad) 
+        
         let aux=cart;
         aux.splice(index,1);
         setCart([...aux])
@@ -104,7 +112,7 @@ export default function Cart(){
     <Button variant="contained" onClick={()=>navigate("/datosEnvio")}>
       Proseguir Compra
     </Button>
-    <Button varaint="contained" color="error" onClick={()=>handleVaciarCarrito}> Vaciar Carrito</Button>
+    <Button varaint="contained" color="error" onClick={()=>handleVaciarCarrito()}> Vaciar Carrito</Button>
    </>
   }
 

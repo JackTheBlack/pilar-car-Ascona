@@ -1,4 +1,4 @@
-import  React, {useState,useEffect} from 'react';
+import  React, {useState,useEffect, useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import CartContext from '../context/CartContext';
+import {bringFavorites} from "../functions/FirebaseFunctions"
 
 
 const theme = createTheme();
@@ -22,7 +23,7 @@ export default function LogForm({setOpen,setAuth}) {
    const [usuario,setUsuario]=useState();
   const  [email,setEmail]=useState();
   const [pass,setPass]=useState();
-
+  const {setStar,wishlist,setWishlist}=useContext(CartContext)
 
 
     const getUser=async(password)=>{
@@ -37,6 +38,8 @@ export default function LogForm({setOpen,setAuth}) {
             const storage=sessionStorage.setItem("session",JSON.stringify(data))
             setAuth(JSON.parse(sessionStorage.getItem("session")))
             setOpen(false);
+            setStar(true);
+          
           }else{
             console.log("error  mail o contraseña")
           }
@@ -64,6 +67,7 @@ export default function LogForm({setOpen,setAuth}) {
   useEffect(()=>{
     if(email!==undefined){
       getUser(pass)
+     
     }
    
   },[email])
