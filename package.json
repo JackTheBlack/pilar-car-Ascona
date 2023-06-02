@@ -2,7 +2,7 @@
   "name": "pilar-car",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jacktheblack.github.io/pilar-car-Ascona",
+  "homepage": "https://jacktheblack.github.io/pilar-car-Ascona",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
